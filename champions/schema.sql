@@ -10,4 +10,4 @@ CREATE TABLE user (
 CREATE TABLE champion (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     champion_name TEXT UNIQUE NOT NULL
-)
+);

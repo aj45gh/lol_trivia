@@ -5,3 +5,7 @@ microservices
 - winrate lower/higher
 - shopkeeper's quiz clone
 - random champion
+
+Plan:
+1) Admin interface for champion CRUD
+2) Homepage with links to trivia games
