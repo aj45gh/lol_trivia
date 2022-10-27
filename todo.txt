@@ -9,3 +9,5 @@ microservices
 Plan:
 1) Admin interface for champion CRUD
 2) Homepage with links to trivia games
+3) Use ORM
+4) Get updated champ info via API/web scraping
