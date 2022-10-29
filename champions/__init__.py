@@ -1,32 +1,21 @@
-import os
-from flask import Flask, render_template
+from flask import Flask
+
+from champions.database import init_db, db_session
 
 
-def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'champions.sqlite')
-    )
+def create_app():
+    app = Flask(__name__)
+    init_db()
 
-    if test_config is None:
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        app.config.from_mapping(test_config)
+    @app.teardown_appcontext
+    def shutdown_session():
+        db_session.remove()
 
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    from champions.models.user import User
 
-    @app.route('/')
-    def index():
-        return render_template('index.html')
-
-    from . import db
-    db.init_app(app)
-
-    from . import auth
-    app.register_blueprint(auth.bp)
+    # u = User(username='notaj', password='notmypass')
+    # db_session.add(u)
+    # db_session.commit()
+    print(User.query.all())
 
     return app
