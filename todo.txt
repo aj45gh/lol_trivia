@@ -11,3 +11,6 @@ Plan:
 2) Homepage with links to trivia games
 3) Use ORM
 4) Get updated champ info via API/web scraping
+5) Routes file?
+6) Implement services to keep controllers lean
+7) Base template

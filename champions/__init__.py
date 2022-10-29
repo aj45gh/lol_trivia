@@ -7,15 +7,18 @@ def create_app():
     app = Flask(__name__)
     init_db()
 
-    @app.teardown_appcontext
-    def shutdown_session():
-        db_session.remove()
+    # @app.teardown_appcontext
+    # def shutdown_session(*args):
+    #     db_session.remove()
 
-    from champions.models.user import User
+    from champions.routes import auth, home
+
+    app.register_blueprint(home.home)
+    app.register_blueprint(auth.auth)
 
     # u = User(username='notaj', password='notmypass')
     # db_session.add(u)
     # db_session.commit()
-    print(User.query.all())
+    # print(User.query.all())
 
     return app
